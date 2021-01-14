@@ -2,14 +2,14 @@ class Flattener
 
   def self.ruby_flatten(array)
     new_array = []
+    new_element = []
     array.each do |element|
       if element.class == Array
-        if element[0].class == Array
-          new_array << ruby_flatten(element)
-        else
-          new_array << element[0]
+        until new_element[0] != Array
+          new_element = ruby_flatten(element)
         end
-        # require "pry"; binding.pry
+        new_array << new_element[0]
+        require "pry"; binding.pry
       else
         new_array << element
       end
